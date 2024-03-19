@@ -54,8 +54,10 @@ public class FrameNWidgetDemo {
 		actions.moveToElement(widgets).perform();
 		actions.moveToElement(datePicker).click().build().perform();
 		
-		WebElement pickDate = driver.findElement(By.xpath("//input[@id='datepicker2']"));
-		pickDate.click();
+		//Webelement pickDate1 = driver.findElement(By.xpath())
+		
+		WebElement pickDate2 = driver.findElement(By.xpath("//input[@id='datepicker2']"));
+		pickDate2.click();
 		
 		WebElement month = driver.findElement(By.xpath("//select[@title='Change the month']"));
 		Select monthSelect = new Select(month);

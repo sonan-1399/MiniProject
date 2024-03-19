@@ -21,62 +21,49 @@ import org.testng.annotations.Test;
 import com.test.utils.DriverUtils;
 
 public class AutomationDemoSite {
-	
+
 	static WebDriver driver;
 	static DriverUtils util;
 	static Map<String, String> excelValues = new HashMap<>();
-	
+
 	@Test
-	public static void Scenario2() throws IOException
+	public static void scenario2() throws IOException
 	{
-	
 		readExcelValues();
-		SkipSignIn();
-		SelectSwitchTo();
-		SwtParentFrame();
-		TxtInIframe();
-		SwtDefaultContent();
-		SelectWidgetsAndDate();
+		skipSignIn();
+		selectSwitchTo();
+		swtParentFrame();
+		txtInFrame();
+		swtDefaultContent();
+		selectWidgetsAndDate();
 	}
-//	public static void main(String[] args) throws IOException {
-//		
-//		readExcelValues();
-//		SkipSignIn();
-//		SelectSwitchTo();
-//		SwtParentFrame();
-//		TxtInIframe();
-//		SwtDefaultContent();
-//		SelectWidgetsAndDate();
-//		CloseApplication();
-//	}
 
 	private static void readExcelValues() throws IOException {
-        FileInputStream fs = new FileInputStream("C:/Users/snthadev/MiniProjectData.xlsx");
-        XSSFWorkbook workbook = new XSSFWorkbook(fs);
-        XSSFSheet sheet = workbook.getSheetAt(0);
- 
-        for (Row row : sheet) {
-            String element = row.getCell(0).getStringCellValue();
-            Cell valueCell = row.getCell(1);
- 
-            excelValues.put(element, getStringCellValue(valueCell));
-        }
-        workbook.close();
-    }
-	
+		FileInputStream fs = new FileInputStream("C:/Users/snthadev/MiniProjectData.xlsx");
+		XSSFWorkbook workbook = new XSSFWorkbook(fs);
+		XSSFSheet sheet = workbook.getSheetAt(0);
+
+		for (Row row : sheet) {
+			String element = row.getCell(0).getStringCellValue();
+			Cell valueCell = row.getCell(1);
+			excelValues.put(element, getStringCellValue(valueCell));
+		}
+		workbook.close();
+	}
+
 	private static String getStringCellValue(Cell cell) {
-        if (cell == null) {
-            return null;
-        } else if (cell.getCellType() == CellType.STRING) {
-            return cell.getStringCellValue();
-        } else if (cell.getCellType() == CellType.NUMERIC) {
-            // here converting numeric value to string
-            return String.valueOf(cell.getNumericCellValue());
-        } else {
-            return null;
-        }
-    }
-	
+		if (cell == null) {
+			return null;
+		} else if (cell.getCellType() == CellType.STRING) {
+			return cell.getStringCellValue();
+		} else if (cell.getCellType() == CellType.NUMERIC) {
+			// here converting numeric value to string
+			return String.valueOf(cell.getNumericCellValue());
+		} else {
+			return null;
+		}
+	}
+
 	@BeforeTest
 	private static WebDriver OpenApplication() {
 		System.setProperty("webdriver.chrome.exe", "C:/Users/snthadev/Documents/chromedriver.exe");
@@ -88,44 +75,41 @@ public class AutomationDemoSite {
 		System.out.println("Application Opened");
 		return driver;
 	}
-	
-	private static void SkipSignIn() {
+
+	private static void skipSignIn() {
 		util.Click(excelValues.get("skipSignIn"));
 	}
-	
-	public static void SelectSwitchTo() {
+
+	public static void selectSwitchTo() {
 		util.Actions(excelValues.get("switchTo"), excelValues.get("frames"));
 	}
-	
-	public static void SwtParentFrame() {
+
+	public static void swtParentFrame() {
 		driver.switchTo().parentFrame();
 	}
-	
-	public static void TxtInIframe() {
+
+	public static void txtInFrame() {
 		util.Click(excelValues.get("withInIframe"));
 		util.SwitchToFrame(excelValues.get("parentFrame"));
 		util.SwitchToFrame(excelValues.get("childFrame"));
 		util.SendKeys(excelValues.get("textBox"), excelValues.get("textBox_Value"));
 		System.out.println("Text has been inputted");
-//		String actual = util.GetText(excelValues.get("textBox"));
-//		String textToCheck = "IJKLMNO";
-//		Assert.assertEquals(actual, textToCheck , "Texts are different or nothing present");
 	}
-	
-	public static void SwtDefaultContent() {
+
+	public static void swtDefaultContent() {
 		driver.switchTo().defaultContent();
 	}
-	
-	public static void SelectWidgetsAndDate() {
+
+	public static void selectWidgetsAndDate() {
 		util.Actions(excelValues.get("widgets"), excelValues.get("datePicker"));
 		util.Click(excelValues.get("pickDate"));
 		util.Select(excelValues.get("month"), excelValues.get("month_Value"));
 		util.Click(excelValues.get("date"));
 		System.out.println("Date has been selected");
 	}
-	
+
 	@AfterTest
-	public static void CloseApplication() {
+	public static void closeApplication() {
 		driver.quit();
 		System.out.println("Application closed");
 	}

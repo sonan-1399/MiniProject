@@ -2,24 +2,24 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-03-08T12:20:38 IST" name="Default suite" finished-at="2024-03-08T12:20:53 IST" duration-ms="15535">
+  <suite started-at="2024-03-08T16:20:27 IST" name="Default suite" finished-at="2024-03-08T16:20:38 IST" duration-ms="10781">
     <groups>
     </groups>
-    <test started-at="2024-03-08T12:20:38 IST" name="Default test" finished-at="2024-03-08T12:20:53 IST" duration-ms="15535">
-      <class name="com.check.AutomationDemoSite">
-        <test-method is-config="true" signature="OpenApplication()[pri:0, instance:com.check.AutomationDemoSite@7188af83]" started-at="2024-03-08T12:20:38 IST" name="OpenApplication" finished-at="2024-03-08T12:20:45 IST" duration-ms="7585" status="PASS">
+    <test started-at="2024-03-08T16:20:27 IST" name="Default test" finished-at="2024-03-08T16:20:38 IST" duration-ms="10781">
+      <class name="com.check.CPUValueTest">
+        <test-method is-config="true" signature="OpenApplication()[pri:0, instance:com.check.CPUValueTest@5ddeb7cb]" started-at="2024-03-08T16:20:28 IST" name="OpenApplication" finished-at="2024-03-08T16:20:36 IST" duration-ms="8349" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- OpenApplication -->
-        <test-method signature="Scenario2()[pri:0, instance:com.check.AutomationDemoSite@7188af83]" started-at="2024-03-08T12:20:45 IST" name="Scenario2" finished-at="2024-03-08T12:20:52 IST" duration-ms="7196" status="PASS">
+        <test-method signature="Scenario4()[pri:0, instance:com.check.CPUValueTest@5ddeb7cb]" started-at="2024-03-08T16:20:36 IST" name="Scenario4" finished-at="2024-03-08T16:20:38 IST" duration-ms="1536" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- Scenario2 -->
-        <test-method is-config="true" signature="CloseApplication()[pri:0, instance:com.check.AutomationDemoSite@7188af83]" started-at="2024-03-08T12:20:52 IST" name="CloseApplication" finished-at="2024-03-08T12:20:53 IST" duration-ms="657" status="PASS">
+        </test-method> <!-- Scenario4 -->
+        <test-method is-config="true" signature="CloseApplication()[pri:0, instance:com.check.CPUValueTest@5ddeb7cb]" started-at="2024-03-08T16:20:38 IST" name="CloseApplication" finished-at="2024-03-08T16:20:38 IST" duration-ms="740" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- CloseApplication -->
-      </class> <!-- com.check.AutomationDemoSite -->
+      </class> <!-- com.check.CPUValueTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
