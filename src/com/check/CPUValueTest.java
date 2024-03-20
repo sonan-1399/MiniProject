@@ -2,39 +2,29 @@ package com.check;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
 import com.test.utils.DriverUtils;
 
 public class CPUValueTest {
 	static WebDriver driver;
-	static DriverUtils util;
 	static Map<String, String> excelValues = new HashMap<>();
+	static DriverUtils util;
 
 	@BeforeTest
-	private static WebDriver openApplication() {
-		System.setProperty("webdriver.chrome.exe", "C:/Users/snthadev/Documents/chromedriver.exe");
-		driver = new ChromeDriver();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-		driver.get("https://practice.expandtesting.com/dynamic-table");
-		driver.manage().window().maximize();
+	private static void openApplication() {
 		util = new DriverUtils(driver);
-		System.out.println("Application Opened");
-		return driver;
+		util.detailsToOpenApp("https://practice.expandtesting.com/dynamic-table");
 	}
 
 	@Test
@@ -61,7 +51,6 @@ public class CPUValueTest {
 		} else if (cell.getCellType() == CellType.STRING) {
 			return cell.getStringCellValue();
 		} else if (cell.getCellType() == CellType.NUMERIC) {
-			// here converting numeric value to string
 			return String.valueOf(cell.getNumericCellValue());
 		} else {
 			return null;
@@ -69,15 +58,14 @@ public class CPUValueTest {
 	}	
 
 	public static void getCPUValue() {
-		String temp = util.GetText(excelValues.get("cpuTableValue"));
+		String temp = util.getText(excelValues.get("cpuTableValue"));
 		String expected = "Chrome CPU: " +temp;
-		String actual = util.GetText(excelValues.get("cpuHighLtValue"));
+		String actual = util.getText(excelValues.get("cpuHighLtValue"));
 		Assert.assertEquals(actual, expected, "CPU Load values are different");		
 	}
 
 	@AfterTest
 	public static void closeApplication() {
-		driver.quit();
-		System.out.println("Application closed");
+		util.closeApp();
 	}
 }
